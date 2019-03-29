@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-unordered_map<int, int> mem;
+unordered_map<long long, long long> mem;
 
-int cycles(int x){
+long long cycles(long long x){
 	if(mem.find(x) != mem.end()) return mem[x];
 	if(x%2 == 0) mem[x] = 1 + cycles(x/2); 
 	else mem[x] = 2 + cycles((3*x+1)/2);
@@ -10,11 +10,11 @@ int cycles(int x){
 }
 
 int main(int argc, char *argv[]) {
-	int i, j;
+	long long i, j;
 	mem[1] = 1;
 	while(cin>>i>>j){
-		int mx = 0;
-		for(int x = i; x<= j; x++)
+		long long mx= 0;
+		for(long long x = min(i,j); x<= max(i,j); x++)
 			mx =  max(cycles(x), mx);
 		cout<<i<<" "<<j<<" "<<mx<<endl;
 	}
